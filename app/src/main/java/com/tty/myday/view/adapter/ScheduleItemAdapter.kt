@@ -22,11 +22,8 @@ class ScheduleItemAdapter(var data:ScheduleItemCollection): RecyclerView.Adapter
     }
 
     override fun getItemCount(): Int {
-        if (data.data.size < 9){
-            return 10;
-        } else{
-            return data.data.size + 1;
-        }
+        //return 22;
+        return data.data.size + 1
     }
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {

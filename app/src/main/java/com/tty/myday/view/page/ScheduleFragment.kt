@@ -49,7 +49,7 @@ class ScheduleFragment : Fragment(),View.OnClickListener, DialogInterface.OnDism
         recyclerView.isNestedScrollingEnabled = false
         val adapter = ScheduleTagAdapter(DataSource.tags,ColorIconConverter())
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(context,1,false)
+        recyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,false)
         //recyclerView.layoutManager = AutoFixLinearLayoutManager(context!!,1,false,6)
         adapter.setOnRItemClickListener(rItemListener)
         val touchHelper = ItemTouchHelper(SwiftTouchHelperCallBack<ScheduleTagAdapter.ViewHolder>(this))
@@ -58,7 +58,7 @@ class ScheduleFragment : Fragment(),View.OnClickListener, DialogInterface.OnDism
         val autoRecyclerView = recyclerView_auto_tag
         val autoAdapter = ScheduleTagAdapter(DataSource.autoTags,ColorIconConverter())
         autoRecyclerView.adapter = autoAdapter
-        autoRecyclerView.layoutManager = LinearLayoutManager(context,1,false)
+        autoRecyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,false)
         autoAdapter.setOnRItemClickListener(autoRItemListener)
 
         val sharedRecyclerView = recyclerView_shared_tag
@@ -66,7 +66,7 @@ class ScheduleFragment : Fragment(),View.OnClickListener, DialogInterface.OnDism
         sharedRecyclerView.isNestedScrollingEnabled = false
         val sharedAdapter = ScheduleTagAdapter(DataSource.sharedTags,ColorIconConverter())
         sharedRecyclerView.adapter = sharedAdapter
-        sharedRecyclerView.layoutManager = LinearLayoutManager(context,1,false)
+        sharedRecyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,false)
         sharedAdapter.setOnRItemClickListener(sharedRItemListener)
         val sharedTouchHelper = ItemTouchHelper(SwiftTouchHelperCallBack<ScheduleTagAdapter.ViewHolder>(sharedMoveItemListener))
         sharedTouchHelper.attachToRecyclerView(sharedRecyclerView)

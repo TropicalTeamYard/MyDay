@@ -87,6 +87,8 @@
                 app:fabSize="auto"
                 android:src="@drawable/ic_add_black"
                 android:tint="@color/colorLight"
+                android:clickable="true"
+                android:background="@drawable/bg_ripple"
                 android:layout_margin="16dp"/>
     </RelativeLayout>
 </LinearLayout>

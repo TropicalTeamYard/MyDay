@@ -1,12 +1,14 @@
 package com.tty.myday.view.page
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.tty.myday.R
 import com.tty.myday.data.DataSource
 import com.tty.myday.listener.OnRItemClickListener
@@ -14,6 +16,7 @@ import com.tty.myday.model.ScheduleTag
 import com.tty.myday.util.TagConst
 import com.tty.myday.view.adapter.ScheduleItemAdapter
 import com.tty.myday.view.converter.ColorIconConverter
+import com.tty.myday.view.helper.MyDecoration
 import kotlinx.android.synthetic.main.activity_normal_schedule.*
 
 class NormalScheduleActivity : AppCompatActivity(), View.OnClickListener,OnRItemClickListener {
@@ -62,8 +65,12 @@ class NormalScheduleActivity : AppCompatActivity(), View.OnClickListener,OnRItem
         //TODO("重写读取数据集的逻辑")
         val adapter = ScheduleItemAdapter(DataSource.scheduleMap["item1"]!!)
 
+        recyclerView_item.overScrollMode =RecyclerView.OVER_SCROLL_NEVER
         recyclerView_item.adapter = adapter;
-        recyclerView_item.layoutManager = LinearLayoutManager(this,1,false)
+        recyclerView_item.layoutManager = LinearLayoutManager(this,RecyclerView.VERTICAL,false)
+        //recyclerView_item.addItemDecoration(MItemDecoration(this,1, Color.GRAY))
+        recyclerView_item.addItemDecoration(MyDecoration(this,RecyclerView.VERTICAL,40))
+
 
         adapter.setOnRItemClickListener(this)
 
