@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
+import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,9 @@ import com.tty.myday.view.helper.MyDecoration
 import kotlinx.android.synthetic.main.activity_normal_schedule.*
 
 class NormalScheduleActivity : AppCompatActivity(), View.OnClickListener,OnRItemClickListener {
+
+    private var taskType:Int = 1
+
     override fun onItemClick(v: View?, position: Int) {
         Log.d(TagConst.UI,"item:: 点击了第${position}项")
     }
@@ -31,6 +35,14 @@ class NormalScheduleActivity : AppCompatActivity(), View.OnClickListener,OnRItem
                 startActivity(intent)
                 finish()
             }
+            float_button_add_normal->{
+                float_button_add_normal.hide()
+                card_add_normal.visibility = View.VISIBLE
+
+            }
+            btn_type_normal->{
+                onCreateMenu(btn_type_normal)
+            }
         }
     }
 
@@ -39,6 +51,9 @@ class NormalScheduleActivity : AppCompatActivity(), View.OnClickListener,OnRItem
         setContentView(R.layout.activity_normal_schedule)
 
         img_back_normal_schedule.setOnClickListener(this)
+        float_button_add_normal.setOnClickListener(this)
+        btn_type_normal.setOnClickListener(this)
+
         //防止回收后出现空指针异常的问题
         DataSource.initIfNotLoadAsync(this)
 
@@ -78,6 +93,33 @@ class NormalScheduleActivity : AppCompatActivity(), View.OnClickListener,OnRItem
 
     override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
         super.onSaveInstanceState(outState, outPersistentState)
+    }
+
+    private fun onCreateMenu(v:View)
+    {
+        Log.d(TagConst.UI,"创建menu$v")
+        val popupMenu:PopupMenu = PopupMenu(this,v)
+        menuInflater.inflate(
+            when(v){
+                btn_type_normal->R.menu.type_normal
+                else->R.menu.type_normal
+            },
+            popupMenu.menu
+        )
+        popupMenu.setOnMenuItemClickListener{item->
+            when(item.itemId){
+                R.id.type_event_normal->{
+                    taskType = 0
+                    tbx_type_normal.text = "日程"
+                }
+                R.id.type_task_normal->{
+                    taskType = 1
+                    tbx_type_normal.text = "任务"
+                }
+            }
+            false
+        }
+        popupMenu.show()
     }
 
 }

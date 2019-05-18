@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/type_event_normal"
+            android:title="日程"/>
+    <item
+            android:id="@+id/type_task_normal"
+            android:title="任务"/>
+</menu>

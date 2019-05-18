@@ -15,6 +15,7 @@ class ScheduleItemAdapter(var data:ScheduleItemCollection): RecyclerView.Adapter
 
     var mListener:OnRItemClickListener?=null
     lateinit var context: Context
+    var isFolded =  false
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         context = p0.context
@@ -31,7 +32,11 @@ class ScheduleItemAdapter(var data:ScheduleItemCollection): RecyclerView.Adapter
             p0.tbxTitle.text = data.data[p1].title
             p0.itemView.visibility = View.VISIBLE
         } else {
-            p0.itemView.visibility = View.INVISIBLE
+            if (isFolded){
+                p0.itemView.visibility = View.GONE
+            }else{
+                p0.itemView.visibility = View.INVISIBLE
+            }
         }
     }
 
